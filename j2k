@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+version() {
+  echo "j2k v0.1"
+}
+
+case $1 in
+  version|--version|-v)
+    version
+    ;;
+esac
