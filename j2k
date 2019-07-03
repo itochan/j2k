@@ -10,6 +10,15 @@ rename() {
 
   git mv $filename.java $filename.kt
   git commit -m "Rename $classname"
+  mv $filename.kt $filename.java
+}
+
+donecmd() {
+  path=$1
+  classname=$(basename $path .kt)
+
+  git add -u $path
+  git commit -m "Kotlinize $classname"
 }
 
 version() {
@@ -19,6 +28,10 @@ version() {
 case $1 in
   rename)
     rename $2
+    ;;
+
+  done)
+    donecmd $2
     ;;
 
   version|--version|-v)
