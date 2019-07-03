@@ -26,15 +26,15 @@ version() {
 }
 
 case $1 in
-  rename)
-    rename $2
-    ;;
+rename)
+  rename $2
+  ;;
 
-  done)
-    donecmd $2
-    ;;
+done)
+  donecmd $2
+  ;;
 
-  version|--version|-v)
-    version
-    ;;
+version | --version | -v)
+  version
+  ;;
 esac
