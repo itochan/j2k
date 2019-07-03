@@ -2,6 +2,12 @@
 
 set -eu
 
+checkout() {
+  classname=$1
+  snake_case=$(sed -e 's/\([a-z]\)\([A-Z]\)/\1_\2/g' <<< $1 | tr '[A-Z]' '[a-z]')
+  git checkout -b "kotlinize_$snake_case"
+}
+
 rename() {
   path=$1
   filename="${path%.*}"
@@ -26,6 +32,9 @@ version() {
 }
 
 case $1 in
+checkout)
+  checkout $2
+  ;;
 rename)
   rename $2
   ;;
