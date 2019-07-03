@@ -1,12 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eu
+
+rename() {
+  path=$1
+  filename="${path%.*}"
+  extension="${path##*.}"
+  classname=$(basename $path .java)
+
+  git mv $filename.java $filename.kt
+  git commit -m "Rename $classname"
+}
 
 version() {
   echo "j2k v0.1"
 }
 
 case $1 in
+  rename)
+    rename $2
+    ;;
+
   version|--version|-v)
     version
     ;;
