@@ -3,8 +3,9 @@
 set -eu
 
 checkout() {
-  classname=$1
-  snake_case=$(sed -e 's/\([a-z]\)\([A-Z]\)/\1_\2/g' <<< $1 | tr '[A-Z]' '[a-z]')
+  path=$1
+  classname=$(basename $path .java)
+  snake_case=$(sed -e 's/\([a-z]\)\([A-Z]\)/\1_\2/g' <<< $classname | tr '[A-Z]' '[a-z]')
   git checkout -b "kotlinize_$snake_case"
 }
 
