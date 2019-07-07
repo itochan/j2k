@@ -28,6 +28,16 @@ donecmd() {
   git commit -m "Kotlinize $classname"
 }
 
+helpcmd() {
+  cat << HELP
+j2k checkout [class name]
+j2k rename [.java file path]
+j2k done [.kt file path]
+j2k help
+j2k version
+HELP
+}
+
 version() {
   echo "j2k v0.1"
 }
@@ -42,6 +52,10 @@ rename)
 
 done)
   donecmd $2
+  ;;
+
+help | --help | -h)
+  helpcmd
   ;;
 
 version | --version | -v)
